@@ -14,6 +14,9 @@ markup:
 params:
   description: Easy OIDC is a minimal OIDC provider that lets your team authenticate to Kubernetes clusters using their existing Google or GitHub accounts.
   externalLinkDecoration: true
+  search:
+    enable: true
+    type: flexsearch
   analytics:
     umami:
       serverURL: "https://cloud.umami.is"
@@ -31,6 +34,10 @@ params:
 
 menu:
   main:
+    - name: Search
+      weight: 1
+      params:
+        type: search
     - name: Discord
       weight: 5
       url: "https://go.nadrama.com/discord"
