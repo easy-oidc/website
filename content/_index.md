@@ -3,7 +3,9 @@ draft: false
 title: 'Easy OIDC'
 ---
 
-A lightweight OpenID Connect provider designed for Kubernetes authentication with Google or GitHub federation.
+<div style="text-align: center; margin: 2rem 0;">
+  <img src="/easy-oidc-logo.svg" alt="Easy OIDC" style="max-width: 600px; width: 100%;" />
+</div>
 
 ## What is Easy OIDC?
 
@@ -16,6 +18,7 @@ Easy OIDC is a minimal OIDC provider that lets your team authenticate to Kuberne
 - **Minimal Infrastructure**: Single VM instance deployment with auto-managed TLS
 - **Secure by Default**: PKCE-only flows, Ed25519 signing, automatic HTTPS via Let's Encrypt
 - **Cloud-Native**: Terraform/OpenTofu modules for AWS with GCP and Azure planned
+- **Open Source**: Easy OIDC is released under the Apache License 2.0.
 
 ## Why Easy OIDC?
 

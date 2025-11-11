@@ -1,0 +1,4 @@
+/* Hide the page title on homepage */
+h1.hx\:text-center {
+  display: none;
+}

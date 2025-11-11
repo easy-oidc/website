@@ -1,9 +1,29 @@
 baseURL: https://easy-oidc.dev/
 languageCode: en-us
 title: Easy OIDC
+
 module:
   imports:
     - path: github.com/imfing/hextra
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+params:
+  description: Easy OIDC is a minimal OIDC provider that lets your team authenticate to Kubernetes clusters using their existing Google or GitHub accounts.
+  externalLinkDecoration: true
+  navbar:
+    displayLogo: true
+    logo:
+      path: easy-oidc-icon.svg
+      width: 30
+      height: 30
+  customCSS:
+    - css/custom.css
+  footer:
+    displayPoweredBy: false
 
 menu:
   main:
@@ -12,3 +32,10 @@ menu:
       url: "https://github.com/easy-oidc/easy-oidc"
       params:
         icon: github
+  sidebar:
+    - name: GitHub
+      url: "https://github.com/easy-oidc/easy-oidc"
+      weight: 1
+
+outputs:
+  home: [html, llms]
