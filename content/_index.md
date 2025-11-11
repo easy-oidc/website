@@ -9,7 +9,7 @@ title: 'Easy OIDC'
 
 ## What is Easy OIDC?
 
-Easy OIDC is a minimal OIDC provider that lets your team authenticate to Kubernetes clusters using their existing Google or GitHub accounts. No password management, no complex infrastructure—just simple, secure authentication.
+Easy OIDC is a minimal OIDC provider that lets your team authenticate to Kubernetes clusters using their existing Google or GitHub accounts, and a simple configuration for mapping groups claims for easy RBAC.
 
 ## Key Features
 
