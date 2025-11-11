@@ -31,6 +31,11 @@ params:
 
 menu:
   main:
+    - name: Discord
+      weight: 5
+      url: "https://go.nadrama.com/discord"
+      params:
+        icon: discord
     - name: GitHub
       weight: 10
       url: "https://github.com/easy-oidc/easy-oidc"
