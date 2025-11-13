@@ -21,6 +21,7 @@ params:
     umami:
       serverURL: "https://cloud.umami.is"
       websiteID: "a28e96fc-f759-40f0-a6ce-7f53d2ba223c"
+      scriptName: "script.js"
   navbar:
     displayLogo: true
     logo:
