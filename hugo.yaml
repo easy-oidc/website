@@ -39,11 +39,11 @@ menu:
       weight: 1
       params:
         type: search
-    - name: Discord
+    - name: Community Forum
       weight: 5
-      url: "https://go.nadrama.com/discord"
+      url: "https://forum.podplane.dev"
       params:
-        icon: discord
+        icon: chat
     - name: GitHub
       weight: 10
       url: "https://github.com/easy-oidc/easy-oidc"
