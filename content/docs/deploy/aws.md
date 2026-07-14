@@ -26,7 +26,7 @@ Before deploying, you must have:
 2. **Route53 DNS Zone**: For configuring DNS records (required for Let's Encrypt TLS)
 3. **Secrets in AWS Secrets Manager**:
    - OAuth client credentials (created via [upstream provider setup](/docs/upstream/))
-   - Ed25519 signing key (generated with `openssl`)
+   - PKCS8 PEM private key compatible with `signing_algorithm` (RSA-3072 for the default RS256 algorithm)
 
 The module **does not** create:
 - VPC, Internet Gateway, or Route Table (you create these)
@@ -53,8 +53,8 @@ aws secretsmanager create-secret \
     "client_secret": "your-client-secret"
   }'
 
-# Signing key (generates Ed25519 key)
-openssl genpkey -algorithm ed25519 | aws secretsmanager create-secret \
+# PKCS8 PEM private key (generates RSA-3072 key for the default RS256 algorithm)
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 | aws secretsmanager create-secret \
   --name easy-oidc-signing-key \
   --secret-string file:///dev/stdin
 ```
@@ -239,7 +239,8 @@ kubectl oidc-login setup \
 | `connector_client_secret_arn` | Secrets Manager ARN for OAuth credentials (required) | - |
 | `clients` | Map of OIDC client configurations (required) | - |
 | `subnet_id` | Subnet ID (auto-created if omitted) | `null` |
-| `signing_key_secret_arn` | Secrets Manager ARN for signing key | `null` |
+| `signing_key_secret_arn` | Secrets Manager ARN for a PKCS8 PEM private key compatible with `signing_algorithm` | `null` |
+| `signing_algorithm` | JWT signing algorithm | `"RS256"` |
 | `default_redirect_uris` | Default redirect URIs for clients | `["http://localhost:8000"]` |
 | `groups_overrides` | Static group mappings (email → groups) | `{}` |
 | `enable_ipv4` | Enable IPv4 support | `true` |

@@ -26,8 +26,8 @@ aws secretsmanager create-secret \
     "client_secret": "your-client-secret"
   }'
 
-# Create signing key
-openssl genpkey -algorithm ed25519 | aws secretsmanager create-secret \
+# Create a PKCS8 PEM private key for the default RS256 algorithm
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 | aws secretsmanager create-secret \
   --name easy-oidc-signing-key \
   --secret-string file:///dev/stdin
 ```
@@ -257,9 +257,9 @@ kubelogin will print a URL. Copy and paste it into your local browser.
 
 **Solution**:
 
-1. **Generate a new Ed25519 key**:
+1. **Generate a new RSA-3072 key**:
    ```bash
-   openssl genpkey -algorithm ed25519 -out new-key.pem
+   openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -out new-key.pem
    ```
 
 2. **Update the secret in Secrets Manager**:

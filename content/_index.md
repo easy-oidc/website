@@ -16,7 +16,7 @@ Easy OIDC is a minimal OIDC provider that lets your team authenticate to Kuberne
 - **Federated Authentication**: Delegate authentication to Google or GitHub (no local passwords to manage)
 - **Kubernetes-Ready**: Built specifically for Kubernetes RBAC with static group mappings
 - **Minimal Infrastructure**: Single VM instance deployment with auto-managed TLS
-- **Secure by Default**: PKCE-only flows, Ed25519 signing, automatic HTTPS via Let's Encrypt
+- **Secure by Default**: PKCE-only flows, Kubernetes-compatible RS256 signing, automatic HTTPS via Let's Encrypt
 - **Cloud-Native**: Terraform/OpenTofu modules for AWS with GCP and Azure planned
 - **Open Source**: Easy OIDC is released under the Apache License 2.0.
 

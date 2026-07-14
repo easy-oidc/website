@@ -52,10 +52,10 @@ aws secretsmanager create-secret \
   }'
 ```
 
-**Signing key** (generates a new Ed25519 key):
+**PKCS8 PEM private key** (generates an RSA-3072 key for the default RS256 algorithm):
 
 ```bash
-openssl genpkey -algorithm ed25519 | aws secretsmanager create-secret \
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 | aws secretsmanager create-secret \
   --name easy-oidc-signing-key \
   --secret-string file:///dev/stdin
 ```

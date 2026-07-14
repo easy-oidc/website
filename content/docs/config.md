@@ -71,10 +71,16 @@ Easy OIDC configuration is specified through Terraform module variables, which a
 
 #### `signing_key_secret_arn`
 - **Type**: `string`
-- **Default**: `null` (auto-generated Ed25519 key)
-- **Description**: ARN of the AWS Secrets Manager secret containing the Ed25519 signing key (PEM format)
+- **Default**: `null`
+- **Description**: ARN of the AWS Secrets Manager secret containing a PKCS8 PEM private key compatible with `signing_algorithm`
 - **Example**: `"arn:aws:secretsmanager:us-east-1:123456789012:secret:easy-oidc-signing-key-XyZ123"`
 - **Recommendation**: Create manually to control key lifecycle
+
+#### `signing_algorithm`
+- **Type**: `string`
+- **Default**: `"RS256"`
+- **Allowed values**: `RS256`, `RS384`, `RS512`, `ES256`, `ES384`, `ES512`, `PS256`, `PS384`, `PS512`, `EdDSA`
+- **Description**: JWT signing algorithm. Kubernetes accepts RS256 by default; other Kubernetes-supported algorithms require matching API server configuration. EdDSA is supported by Easy OIDC but not Kubernetes.
 
 #### `default_redirect_uris`
 - **Type**: `list(string)`

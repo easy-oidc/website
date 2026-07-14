@@ -97,6 +97,7 @@ All configuration in a **JSONC file** (parsed with `tidwall/jsonc`), e.g.:
   "issuer_url": "https://auth.example.com",
   "http_listen_addr": "127.0.0.1:8080",
   "data_dir": "/var/lib/easy-oidc",
+  "signing_algorithm": "RS256",
   
   // Signing key ID
   "jwks_kid": "key-2024-01",
@@ -270,9 +271,9 @@ aws secretsmanager create-secret \
   }'
 ```
 
-**2. Signing key (Ed25519):**
+**2. PKCS8 PEM private key (RSA-3072 for the default RS256 algorithm):**
 ```bash
-openssl genpkey -algorithm ed25519 | aws secretsmanager create-secret \
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 | aws secretsmanager create-secret \
   --name easy-oidc-signing-key \
   --secret-string file:///dev/stdin
 ```
@@ -460,11 +461,11 @@ On instance launch:
 - `github.com/tidwall/jsonc` - JSONC config parsing
 - `github.com/spf13/cobra` - CLI framework
 - `github.com/mattn/go-sqlite3` - Embedded SQLite for OAuth state and authorization code storage
-- Standard library `crypto/ed25519` for signing
+- Standard library `crypto/rsa`, `crypto/ecdsa`, and `crypto/ed25519` for signing
 - Cloud SDKs: AWS Secrets Manager, GCP Secret Manager, Azure Key Vault
 
 **Architecture:**
-- Ed25519 (EdDSA) signing only for ID tokens (state-of-the-art, fast)
+- RS256, RS384, RS512, ES256, ES384, ES512, PS256, PS384, PS512, and EdDSA token signing; RS256 is the Kubernetes-compatible default
 - All HTTP runs on loopback; Caddy handles public TLS
 - Embedded SQLite for OAuth state and authorization code storage with replay protection
 - ARM64-first design (t4g instances, ARM64 binaries)

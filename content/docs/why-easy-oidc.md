@@ -55,7 +55,7 @@ Entire deployment is Terraform-managed. Group mappings, client configurations, a
 **5. Secure by Default**
 
 - PKCE-only flows (prevents token theft)
-- Ed25519 signing (modern, fast cryptography)
+- Kubernetes-compatible RS256 signing by default
 - Automatic HTTPS via Let's Encrypt
 - Secrets stored in cloud provider Secrets Manager (never in Terraform state)
 
@@ -143,7 +143,7 @@ Easy OIDC's security is based on:
 
 1. **Upstream IdP trust**: Google/GitHub verifies user identity (email verification, 2FA, etc.)
 2. **Short-lived tokens**: ID tokens expire after 1 hour (configurable)
-3. **Cryptographic signing**: Ed25519 keys sign all tokens; Kubernetes validates signatures
+3. **Cryptographic signing**: Configurable asymmetric keys sign all tokens; Kubernetes validates signatures
 4. **PKCE enforcement**: Prevents authorization code interception attacks
 5. **HTTPS everywhere**: Caddy provides automatic TLS with Let's Encrypt
 
