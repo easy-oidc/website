@@ -48,13 +48,18 @@ jobs:
         with:
           repository: easy-oidc/easy-oidc
           path: easy-oidc
-          sparse-checkout: docs
-      - name: Copy Easy OIDC docs
+          sparse-checkout: |
+            docs
+            schema
+      - name: Copy Easy OIDC docs and schemas
         run: |
           rm -rf content/docs
           cp -r easy-oidc/docs content/docs
-          # Remove the external mount since docs are now copied locally
+          rm -rf static/schema
+          cp -r easy-oidc/schema static/schema
+          # Remove the external mounts since files are now copied locally
           sed -i '/source: \.\.\/easy-oidc\/docs/,+1d' hugo.yaml
+          sed -i '/source: \.\.\/easy-oidc\/schema/,+1d' hugo.yaml
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5

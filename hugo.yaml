@@ -10,6 +10,8 @@ module:
       target: content
     - source: ../easy-oidc/docs
       target: content/docs
+    - source: ../easy-oidc/schema
+      target: static/schema
 
 markup:
   goldmark:
